@@ -2,6 +2,7 @@
 //1. You have AWS CLI installed on your machine. (I'm using MacOS)
 //2. You are connected to the AWS account.
 //3. You have navigated to the directory where the file you need to multi-part upload is located.
+//4. CRITICAL: Ensure your hard drive or external drive has sufficient storage for double the amount of the original file. 
 
 //some of the following steps don't have to be followed in this precise order, but it's my assessment this is the most logical order, though some you can do more or less simultaneously
 
