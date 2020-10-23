@@ -26,7 +26,5 @@ YouTube video on this process soon and will include the link to that video here 
 Until then, enjoy... I'll update the below TOC as I populate this repository. Let me know what you think!
 
 1. Connection to AWS
-2. Splitting a file
-3. Hashing
-4. Performing the multi-part upload
-5. Re-assembly
+2. Splitting, hash, and upload
+3. Re-assembly
