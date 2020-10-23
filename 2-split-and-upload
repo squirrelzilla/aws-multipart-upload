@@ -1,0 +1,46 @@
+//Pre-reqs: 
+//1. You have AWS CLI installed on your machine. (I'm using MacOS)
+//2. You are connected to the AWS account.
+//3. You have navigated to the directory where the file you need to multi-part upload is located.
+
+//some of the following steps don't have to be followed in this precise order, but it's my assessment this is the most logical order, though some you can do more or less simultaneously
+
+//for the sake of data integrity, we want to take an MD5 hash of the file in its whole form, so we're able to verify the data integrity at the very end.
+openssl md5 -binary filename.xyz | base64
+
+//copy this value into a separate txt file for reference later. I have created a sample working txt file for your use and plagiarism.
+
+//split the file. note the file size restrictions. maximum file size is 5GB. in this example, i am using the maximum permitted.
+//-b is for specifying bytes, so in this case, 5000m equals 5GB. 
+//part- is a file prefix that makes for easier reading, though you may elect to not do this without issue. i find the prefix most helpful when in a directory with many other files.
+//AWS documentation: Overview - https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html
+//AWS documentation: Upload limit - https://docs.aws.amazon.com/AmazonS3/latest/dev/qfacts.html
+split -b 5000m filename.xyz part-
+
+//your machine now begins chopping up the file into 5GB pieces until complete, naming each piece part-aa, part-ab, part-ac, and so on.
+//you can verify this by entering:
+ls -lh
+
+//similar to earlier, for data integrity's sake, we want to ensure what we start with is also what we finish with. run checksums on all parts.
+openssl md5 -binary file-part-a.xyz | base64
+
+//copy the output (feel free to use the template I've provided)
+
+//alternatively, if you have a large series of files, as in my case, I end up with a little over 50 parts, you can run the following command:
+//****
+
+//now we create the AWS multi-part upload session
+//make sure the correct bucket is targeted.
+//the --key is the name of the original, not-splitted file; or, more accurately: the name the file will be once the multi-part upload is completed and re-assembled.
+//(optional) --metadata is the md5 hash of the original, not-splitted file (reference your txt file). 
+//(optional) --storage-class, I wanted to ensure the data is immediately sent to Glacier Deep Archive so we don't incur additional costs.
+aws s3api create-multipart-upload --bucket yourtargets3bucket --key originalfile.xyz --metadata md5=fgp309v0Bi7fgv0kSySiyg== --storage-class DEEP_ARCHIVE
+
+//once the command runs, copy the UploadID and paste it into your working txt file
+
+//now we commence the upload sequence, one part at a time
+aws s3api upload-part --bucket your-aws-bucket --key originalfile.xyz --part-number 1 --body part-aa --upload-id YAr.u3pmGDYMVXAwoCzMA.He6O7PZPMh323.3uug4RKvjrtb5Wc5TNYxh0UiK7ZmBh7Jj2eeRwb45.54oYX9r_wsyP_0WAoHARF.Ohi6f.gjm4c.MC3wBjWg8cEU2PYb
+
+//as you'll see, this grabs the first part of the multi-part upload, and sends it to your S3 bucket.
+//you'll know the upload is complete when the screen returns an ETag. Copy and paste this ETag into your working txt file.
+//rinse and repeat this process, incrementing the --part-number and --body part- each time until all parts have been successfully uploaded.
