@@ -25,9 +25,8 @@ YouTube video on this process soon and will include the link to that video here 
 
 Until then, enjoy... I'll update the below TOC as I populate this repository. Let me know what you think!
 
-1. AWS CLI Installation
-2. Connection to AWS
-3. Splitting a file
-4. Hashing
-5. Performing the multi-part upload
-6. Re-assembly
+1. Connection to AWS
+2. Splitting a file
+3. Hashing
+4. Performing the multi-part upload
+5. Re-assembly
