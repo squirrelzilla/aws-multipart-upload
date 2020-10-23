@@ -1,0 +1,15 @@
+// Ensure you have AWS CLI added to your Terminal properly. 
+// Instructions here: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
+// I used homebrew for the software packages on my Mac - all commands below utilize Mac terminal commands
+
+
+// Navigate to the directory where the file(s) being sent via multi-part upload are housed.
+
+aws configure
+//Access Key ID: use the Key ID from the created credentials in AWS (either from spreadsheet or on screen when created)
+//AWS Secret Access Key: same as above, except the access key
+//Default region name: double check to ensure you are connected to the proper region where your bucket is located
+//Default output format: I always hit enter here without entering any information
+
+//you are now connected to your AWS account! Verify via below
+aws s3 ls
