@@ -44,3 +44,8 @@ aws s3api upload-part --bucket your-aws-bucket --key originalfile.xyz --part-num
 //as you'll see, this grabs the first part of the multi-part upload, and sends it to your S3 bucket.
 //you'll know the upload is complete when the screen returns an ETag. Copy and paste this ETag into your working txt file.
 //rinse and repeat this process, incrementing the --part-number and --body part- each time until all parts have been successfully uploaded.
+
+//to see the overall results of your upload, run the following
+aws s3api list-parts --bucket your-aws-bucket --key originalfile.xyz --upload-id YAr.u3pmGDYMVXAwoCzMA.He6O7PZPMh323.3uug4RKvjrtb5Wc5TNYxh0UiK7ZmBh7Jj2eeRwb45.54oYX9r_wsyP_0WAoHARF.Ohi6f.gjm4c.MC3wBjWg8cEU2PYb
+
+//you now see a complete print out of all the parts of the upload, including the part number, ETag, and size
