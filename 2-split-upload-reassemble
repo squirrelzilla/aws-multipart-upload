@@ -52,3 +52,9 @@ aws s3api list-parts --bucket your-target-bucket --key originalfile.xyz --upload
 
 //you now see a complete print out of all the parts of the upload, including the part number, ETag, and size.
 //this is how you verify you are finished with the upload portion before re-assembly.
+
+//run this command to complete your multipart upload
+aws s3api complete-multipart-upload --multipart-upload file://y-json-file.json --bucket my-target-bucket --key originalfile.xyz --upload-id YAr.u3pmGDYMVXAwoCzMA.He6O7PZPMh323.3uug4RKvjrtb5Wc5TNYxh0UiK7ZmBh7Jj2eeRwb45.54oYX9r_wsyP_0WAoHARF.Ohi6f.gjm4c.MC3wBjWg8cEU2PYb
+
+//assuming there were no issues with upload you will see output showing the tag, bucket, location, and key, indicating it was successful.
+//you can prove it by checking the AWS directory, either via the web GUI or running CLI commands aws s3 ls and navigating to the appropriate bucket.
