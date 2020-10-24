@@ -3,6 +3,7 @@ Uploading a 250GB file to AWS Deep Archive.
 
 I'm still new to AWS so be gentle when reviewing this. :) I had an opportunity to do a little bit more work inside of AWS
 by uploading a modestly large file set for a client. Total size of the entire directory was ~1TB, so nothing crazy, but still a fair amount of data.
+I plan on updating this file and the files inside this project as I get more information and get answers to some of my own questions.
 
 The goal of the project was to provide the client a cost-effective storage solution that was air-gapped from their environment (O365).
 For reference: Office 365 isn't a horrible option if the tenant has ample room, and even still, you can buy additional storage if you desire.
