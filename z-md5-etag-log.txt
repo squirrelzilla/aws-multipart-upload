@@ -1,0 +1,110 @@
+Use this txt file for your own use. It sounds really simple, but when you have multiple terminal windows running, and you're incrementing the commands, DOUBLE CHECK
+the --body and --part to ensure you upload the correct file with the correct label.
+
+MD5 checksum for reallybigfile.xyz: a134bcd567efg890hij123==
+
+MD5 checksums for each of the following parts:
+01 aa: a134bcd567efg890hij123==
+02 ab: a134bcd567efg890hij123==
+03 ac: a134bcd567efg890hij123==
+04 ad: a134bcd567efg890hij123==
+05 ae: a134bcd567efg890hij123==
+06 af: a134bcd567efg890hij123==
+07 ag: a134bcd567efg890hij123==
+08 ah: a134bcd567efg890hij123==
+09 ai: a134bcd567efg890hij123==
+10 aj: a134bcd567efg890hij123==
+11 ak: a134bcd567efg890hij123==
+12 al: a134bcd567efg890hij123==
+13 am: a134bcd567efg890hij123==
+14 an: a134bcd567efg890hij123==
+15 ao: a134bcd567efg890hij123==
+16 ap: a134bcd567efg890hij123==
+17 aq: a134bcd567efg890hij123==
+18 ar: a134bcd567efg890hij123==
+19 as: a134bcd567efg890hij123==
+20 at: a134bcd567efg890hij123==
+21 au: a134bcd567efg890hij123==
+22 av: a134bcd567efg890hij123==
+23 aw: a134bcd567efg890hij123==
+24 ax: a134bcd567efg890hij123==
+25 ay: a134bcd567efg890hij123==
+26 az: a134bcd567efg890hij123==
+27 ba: a134bcd567efg890hij123==
+28 bb: a134bcd567efg890hij123==
+29 bc: a134bcd567efg890hij123==
+30 bd: a134bcd567efg890hij123==
+31 be: a134bcd567efg890hij123==
+32 bf: a134bcd567efg890hij123==
+33 bg: a134bcd567efg890hij123==
+34 bh: a134bcd567efg890hij123==
+35 bi: a134bcd567efg890hij123==
+36 bj: a134bcd567efg890hij123==
+37 bk: a134bcd567efg890hij123==
+38 bl: a134bcd567efg890hij123==
+39 bm: a134bcd567efg890hij123==
+40 bn: a134bcd567efg890hij123==
+41 bo: a134bcd567efg890hij123==
+42 bp: a134bcd567efg890hij123==
+43 bq: a134bcd567efg890hij123==
+44 br: a134bcd567efg890hij123==
+45 bs: a134bcd567efg890hij123==
+46 bt: a134bcd567efg890hij123==
+47 bu: a134bcd567efg890hij123==
+48 bv: a134bcd567efg890hij123==
+49 bw: a134bcd567efg890hij123==
+50 bx: a134bcd567efg890hij123==
+
+Either log the ETags below or just skip this and begin populating the json file instead.
+
+ETags for the following parts:
+01 aa: abcdefghijklmnopqrstuvwxyz123456
+02 ab: abcdefghijklmnopqrstuvwxyz123456
+03 ac: abcdefghijklmnopqrstuvwxyz123456
+04 ad: abcdefghijklmnopqrstuvwxyz123456
+05 ae: abcdefghijklmnopqrstuvwxyz123456
+06 af: abcdefghijklmnopqrstuvwxyz123456
+07 ag: abcdefghijklmnopqrstuvwxyz123456
+08 ah: abcdefghijklmnopqrstuvwxyz123456
+09 ai: abcdefghijklmnopqrstuvwxyz123456
+10 aj: abcdefghijklmnopqrstuvwxyz123456
+11 ak: abcdefghijklmnopqrstuvwxyz123456
+12 al: abcdefghijklmnopqrstuvwxyz123456
+13 am: abcdefghijklmnopqrstuvwxyz123456
+14 an: abcdefghijklmnopqrstuvwxyz123456
+15 ao: abcdefghijklmnopqrstuvwxyz123456
+16 ap: abcdefghijklmnopqrstuvwxyz123456
+17 aq: abcdefghijklmnopqrstuvwxyz123456
+18 ar: abcdefghijklmnopqrstuvwxyz123456
+19 as: abcdefghijklmnopqrstuvwxyz123456
+20 at: abcdefghijklmnopqrstuvwxyz123456
+21 au: abcdefghijklmnopqrstuvwxyz123456
+22 av: abcdefghijklmnopqrstuvwxyz123456
+23 aw: abcdefghijklmnopqrstuvwxyz123456
+24 ax: abcdefghijklmnopqrstuvwxyz123456
+25 ay: abcdefghijklmnopqrstuvwxyz123456
+26 az: abcdefghijklmnopqrstuvwxyz123456
+27 ba: abcdefghijklmnopqrstuvwxyz123456
+28 bb: abcdefghijklmnopqrstuvwxyz123456
+29 bc: abcdefghijklmnopqrstuvwxyz123456
+30 bd: abcdefghijklmnopqrstuvwxyz123456
+31 be: abcdefghijklmnopqrstuvwxyz123456
+32 bf: abcdefghijklmnopqrstuvwxyz123456
+33 bg: abcdefghijklmnopqrstuvwxyz123456
+34 bh: abcdefghijklmnopqrstuvwxyz123456
+35 bi: abcdefghijklmnopqrstuvwxyz123456
+36 bj: abcdefghijklmnopqrstuvwxyz123456
+37 bk: abcdefghijklmnopqrstuvwxyz123456
+38 bl: abcdefghijklmnopqrstuvwxyz123456
+39 bm: abcdefghijklmnopqrstuvwxyz123456
+40 bn: abcdefghijklmnopqrstuvwxyz123456
+41 bo: abcdefghijklmnopqrstuvwxyz123456
+42 bp: abcdefghijklmnopqrstuvwxyz123456
+43 bq: abcdefghijklmnopqrstuvwxyz123456
+44 br: abcdefghijklmnopqrstuvwxyz123456
+45 bs: abcdefghijklmnopqrstuvwxyz123456
+46 bt: abcdefghijklmnopqrstuvwxyz123456
+47 bu: abcdefghijklmnopqrstuvwxyz123456
+48 bv: abcdefghijklmnopqrstuvwxyz123456
+49 bw: abcdefghijklmnopqrstuvwxyz123456
+50 bx: abcdefghijklmnopqrstuvwxyz123456
