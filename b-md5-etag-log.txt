@@ -1,5 +1,7 @@
-Use this txt file for your own use. It sounds really simple, but when you have multiple terminal windows running, and you're incrementing the commands, DOUBLE CHECK
-the --body and --part to ensure you upload the correct file with the correct label.
+# Use this txt file for your own use. It sounds really simple, but when 
+# you have multiple terminal windows running, and you're incrementing 
+# the commands, DOUBLE CHECK the --body and --part to ensure you 
+# upload the correct file with the correct label.
 
 MD5 checksum for reallybigfile.xyz: a134bcd567efg890hij123==
 
