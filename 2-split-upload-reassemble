@@ -1,60 +1,60 @@
-//Pre-reqs: 
-//1. You have AWS CLI installed on your machine. (I'm using MacOS)
-//2. You are connected to the AWS account.
-//3. You have navigated to the directory where the file you need to multi-part upload is located.
-//4. CRITICAL: Ensure your hard drive or external drive has sufficient storage for double the amount of the original file. 
+# Pre-reqs: 
+# 1. You have AWS CLI installed on your machine. (I'm using MacOS)
+# 2. You are connected to the AWS account.
+# 3. You have navigated to the directory where the file you need to multi-part upload is located.
+# 4. CRITICAL: Ensure your hard drive or external drive has sufficient storage for double the amount of the original file. 
 
-//some of the following steps don't have to be followed in this precise order, but it's my assessment this is the most logical order, 
-//though some you can do more or less simultaneously.
+# some of the following steps don't have to be followed in this precise order, but it's my assessment this is the most logical order, 
+# though some you can do more or less simultaneously.
 
-//for the sake of data integrity, we want to take an MD5 hash of the file in its whole form, so we're able to verify the data integrity at the very end.
+# for the sake of data integrity, we want to take an MD5 hash of the file in its whole form, so we're able to verify the data integrity at the very end.
 openssl md5 -binary filename.xyz | base64
 
-//copy this value into a separate txt file for reference later. I have created a sample working txt file for your use and plagiarism.
+# copy this value into a separate txt file for reference later. I have created a sample working txt file for your use and plagiarism.
 
-//split the file. note the file size restrictions. maximum file size is 5GB. in this example, i am using the maximum permitted.
-//-b is for specifying bytes, so in this case, 5000m equals 5GB. 
-//part- is a file prefix that makes for easier reading when with many other files, though you may elect to not do this without issue. 
-//AWS documentation: Overview - https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html
-//AWS documentation: Upload limit - https://docs.aws.amazon.com/AmazonS3/latest/dev/qfacts.html
+# split the file. note the file size restrictions. maximum file size is 5GB. in this example, i am using the maximum permitted.
+# -b is for specifying bytes, so in this case, 5000m equals 5GB. 
+# part- is a file prefix that makes for easier reading when with many other files, though you may elect to not do this without issue. 
+# AWS documentation: Overview - https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html
+# AWS documentation: Upload limit - https://docs.aws.amazon.com/AmazonS3/latest/dev/qfacts.html
 split -b 5000m filename.xyz part-
 
-//your machine now begins chopping up the file into 5GB pieces until complete, naming each piece part-aa, part-ab, part-ac, and so on.
-//you'll see the files populate as the file is split, and you can also verify this by entering:
+# your machine now begins chopping up the file into 5GB pieces until complete, naming each piece part-aa, part-ab, part-ac, and so on.
+# you'll see the files populate as the file is split, and you can also verify this by entering:
 ls -lh
 
-//similar to earlier, for data integrity's sake, we want to ensure what we start with is also what we finish with. run checksums on all parts.
+# similar to earlier, for data integrity's sake, we want to ensure what we start with is also what we finish with. run checksums on all parts.
 openssl md5 -binary file-part-a.xyz | base64
 
-//copy the output (feel free to use the template I've provided)
+# copy the output (feel free to use the template I've provided)
 
-//alternatively, if you have a large series of files, as in my case, I end up with a little over 50 parts, you can run the following command:
-//****
+# alternatively, if you have a large series of files, as in my case, I end up with a little over 50 parts, you can run the following command:
+# ****
 
-//now we create the AWS multi-part upload session.
-//make sure the correct bucket is targeted.
-//the --key is the name of the original, not-splitted file; or, more accurately: the name the file will be once the multi-part upload is completed and re-assembled.
-//(optional) --metadata is the md5 hash of the original, not-splitted file (reference your txt file). 
-//(optional) --storage-class, I wanted to ensure the data is immediately sent to Glacier Deep Archive so we don't incur additional costs.
+# now we create the AWS multi-part upload session.
+# make sure the correct bucket is targeted.
+# the --key is the name of the original, not-splitted file; or, more accurately: the name the file will be once the multi-part upload is completed and re-assembled.
+# (optional) --metadata is the md5 hash of the original, not-splitted file (reference your txt file). 
+# (optional) --storage-class, I wanted to ensure the data is immediately sent to Glacier Deep Archive so we don't incur additional costs.
 aws s3api create-multipart-upload --bucket your-target-bucket --key originalfile.xyz --metadata md5=fgp309v0Bi7fgv0kSySiyg== --storage-class DEEP_ARCHIVE
 
-//once the command runs, copy the UploadID and paste it into your working txt file
+# once the command runs, copy the UploadID and paste it into your working txt file
 
-//now we commence the upload sequence, one part at a time
+# now we commence the upload sequence, one part at a time
 aws s3api upload-part --bucket your-target-bucket --key originalfile.xyz --part-number 1 --body part-aa --upload-id YAr.u3pmGDYMVXAwoCzMA.He6O7PZPMh323.3uug4RKvjrtb5Wc5TNYxh0UiK7ZmBh7Jj2eeRwb45.54oYX9r_wsyP_0WAoHARF.Ohi6f.gjm4c.MC3wBjWg8cEU2PYb
 
-//as you'll see, this grabs the first part of the multi-part upload, and sends it to your S3 bucket.
-//you'll know the upload is complete when the screen returns an ETag. Copy and paste this ETag into your working txt file.
-//rinse and repeat this process, incrementing the --part-number and --body part- each time until all parts have been successfully uploaded.
+# as you'll see, this grabs the first part of the multi-part upload, and sends it to your S3 bucket.
+# you'll know the upload is complete when the screen returns an ETag. Copy and paste this ETag into your working txt file.
+# rinse and repeat this process, incrementing the --part-number and --body part- each time until all parts have been successfully uploaded.
 
-//to see the overall results of your upload, run the following
+# to see the overall results of your upload, run the following
 aws s3api list-parts --bucket your-target-bucket --key originalfile.xyz --upload-id YAr.u3pmGDYMVXAwoCzMA.He6O7PZPMh323.3uug4RKvjrtb5Wc5TNYxh0UiK7ZmBh7Jj2eeRwb45.54oYX9r_wsyP_0WAoHARF.Ohi6f.gjm4c.MC3wBjWg8cEU2PYb
 
-//you now see a complete print out of all the parts of the upload, including the part number, ETag, and size.
-//this is how you verify you are finished with the upload portion before re-assembly.
+# you now see a complete print out of all the parts of the upload, including the part number, ETag, and size.
+# this is how you verify you are finished with the upload portion before re-assembly.
 
-//run this command to complete your multipart upload
+# run this command to complete your multipart upload
 aws s3api complete-multipart-upload --multipart-upload file://y-json-file.json --bucket my-target-bucket --key originalfile.xyz --upload-id YAr.u3pmGDYMVXAwoCzMA.He6O7PZPMh323.3uug4RKvjrtb5Wc5TNYxh0UiK7ZmBh7Jj2eeRwb45.54oYX9r_wsyP_0WAoHARF.Ohi6f.gjm4c.MC3wBjWg8cEU2PYb
 
-//assuming there were no issues with upload you will see output showing the tag, bucket, location, and key, indicating it was successful.
-//you can prove it by checking the AWS directory, either via the web GUI or running CLI commands aws s3 ls and navigating to the appropriate bucket.
+# assuming there were no issues with upload you will see output showing the tag, bucket, location, and key, indicating it was successful.
+# you can prove it by checking the AWS directory, either via the web GUI or running CLI commands aws s3 ls and navigating to the appropriate bucket.
